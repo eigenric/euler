@@ -20,27 +20,13 @@ def fibonacci(n):
 
 	return result
 
-def nearest(limit):
-	"""Calculate which is the position of the fibonacci
-	numbers whose value is the nearest 4000000"""
-
-	for num in xrange(1000): # Generator
-
-		fib = fibonacci(num)
-		if fib > limit:
-			return (num - 1)
-		elif fib == limit:
-			return num
-
-
 def sum_all_fib_even_numbers(limit=4000000):
 	"""Because the sum of two odd numbers is even,
 	even numbers are in [3, 6, 9..] positions"""
 
-	last = nearest(limit)
-	evens = range(3, last + 1, 3)
+	evens = xrange(3, 100, 3)
 
-	return sum([fibonacci(even) for even in evens])
+	return sum([fibonacci(even) for even in evens if fibonacci(even) <= limit])
 
 if __name__ == '__main__':
 
