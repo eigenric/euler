@@ -1,6 +1,6 @@
 import unittest
 
-from problem3 import largest_prime_factor, is_prime
+from problem3 import is_prime, factorize, largest_prime_factor
 
 class LargestPrimeFactorTest(unittest.TestCase):
 
@@ -11,7 +11,21 @@ class LargestPrimeFactorTest(unittest.TestCase):
 
 		self.assertTrue(result)
 
-	@unittest.expectedFailure
+	def test_not_prime(self):
+
+		some_not_primes = [4,6,36,49]
+		result = all(map(is_prime, some_not_primes))
+
+		self.assertFalse(result)
+
+	def test_factorize(self):
+
+		factorized_numbers = {36: [2,3], 240: [2,3,5], 394: [2,197], 13195: [5,7,13,29]}
+
+		for number, prime_factors in factorized_numbers.items():
+
+			self.assertItemsEqual(factorize(number), prime_factors)
+
 	def test_some_numbers(self):
 
 		result = largest_prime_factor(13195)

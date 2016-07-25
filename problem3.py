@@ -5,23 +5,41 @@
 
 # What is the largest prime factor of the number 600851475143 ?
 
+is_divisible = lambda a,b: not a % b
+
 def is_prime(number):
 
 	if number == 2: return True
-	for x in range(2, number):
-		if not number % x: return False
+	if number == 0 or number == 1: return False
+
+	for x in xrange(2, number):
+		if is_divisible(number, x): return False
 	return True
-
-def primes():
-	pass
-
+		
 def factorize(number):
-	pass
+
+	if is_prime(number): return [1, number]
+
+	factors = []
+	
+	for prime in (prime for prime in xrange(2, number) if is_prime(prime)):
+		if number == 1: break
+		if not is_divisible(number, prime): continue
+
+		factors.append(prime)
+		while is_divisible(number, prime):
+			number /= prime
+	return factors
 
 def largest_prime_factor(number):
-	pass
+
+	return max(factorize(number))
 
 
 if __name__ == '__main__':
 
-	main()
+	number = 600851475143
+	factors = factorize(number)
+
+	print("Los factores primos de {} son {}".format(number,factors))
+	print("Y obviamente el mayor es {}".format(max(factors)))
