@@ -11,3 +11,8 @@ Python :snake: language.
 3. [Largest prime factor](https://projecteuler.net/problem=3)
 4. [Largest palindrome product](https://projecteuler.net/problem=4)
 
+## Tools
+
+I use the [EulerPy](https://github.com/iKevinY/EulerPy) command to manage the
+problems.
+
